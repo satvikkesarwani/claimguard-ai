@@ -1,0 +1,16 @@
+# ClaimGuard AI — local single-service run (mirrors the Railway deployment).
+# Builds the React app + serves it with FastAPI under one container/URL.
+#   docker compose up --build   →   http://localhost:8000
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - CLAIMGUARD_DB=/app/data/claimguard.db
+    volumes:
+      - claimguard_data:/app/data
+
+volumes:
+  claimguard_data:
